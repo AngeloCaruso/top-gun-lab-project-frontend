@@ -7,17 +7,20 @@ const { Header, Content, Footer } = Layout;
 
 function Home() {
     const [list, setList] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const crons = getAllCrons();
 
     useEffect(() => {
         crons.then(response => {
             console.log(response);
-            setList(response.data)
+            setList(response.data);
+            setLoading(false);
         })
     }, []);
 
     const confirm = (id) => {
+        setLoading(true);
         deleteCron(id)
             .then((response) => {
                 if (response.success) {
@@ -26,6 +29,7 @@ function Home() {
                     })
                     list.splice(index, 1)
                     setList([...list])
+                    setLoading(false);
                     message.success('CRON Job deleted correctly');
                 }
             });
@@ -82,12 +86,12 @@ function Home() {
         <>
             <Layout style={{ height: '100vh' }}>
                 <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-                    <h1 className='white-text'>CRON MANAGER</h1>
+                    <h1 className='white-text'>CRON MANAGER <Button style={{ float: 'right' }} >Logout</Button></h1>
                 </Header>
                 <Content className="site-layout" style={{ padding: '0 200px', marginTop: 100 }}>
                     <Card>
                         <Button icon={<FieldTimeOutlined />} type='primary' size='large' style={{ marginBottom: 10, float: 'right' }}> New CRON Job </Button>
-                        <Table dataSource={list} columns={columns} rowKey="_id" pagination={false} />
+                        <Table dataSource={list} columns={columns} rowKey="_id" pagination={false} loading={loading} />
                     </Card>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
