@@ -1,7 +1,12 @@
 import { env } from '../../config/.env';
+import { getCookie } from '../../utils/cookies.js'
 
 export async function getAllCrons() {
-    const request = await fetch(`${env.url}/crons/`);
+    const request = await fetch(`${env.url}/crons/`, {
+        headers: {
+            'Authorization': `Bearer ${getCookie('jwt')}`
+        }
+    });
     return await request.json();
 }
 

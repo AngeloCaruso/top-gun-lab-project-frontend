@@ -59,7 +59,7 @@ function Home() {
 
     return (
         <>
-            <Layout>
+            <Layout style={{height: '100vh'}}>
                 <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
                     <h1 className='white-text'>CRON MANAGER</h1>
                 </Header>

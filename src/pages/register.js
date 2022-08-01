@@ -2,13 +2,13 @@ import { Form, Input, Button, Card, Space, Layout, notification } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { login } from '../api/user';
+import { register } from '../api/user';
 
-function Login() {
+function Register() {
     const navigate = useNavigate();
 
     const onFinish = (data) => {
-        login(data)
+        register(data)
             .then((response) => {
                 if (!response.success) {
                     openNotification('top', response.message)
@@ -31,18 +31,15 @@ function Login() {
 
     return (
         <Layout style={{ height: '100vh' }}>
-            <Content style={{ padding: '0 400px' }}>
+            <Content style={{ padding: '0 300px' }}>
                 <Card style={{ marginTop: 100 }}>
                     <Form
-                        name="basic"
+                        name="registration"
                         labelCol={{
                             span: 8,
                         }}
                         wrapperCol={{
                             span: 16,
-                        }}
-                        initialValues={{
-                            remember: true,
                         }}
                         autoComplete="off"
                         onFinish={onFinish}
@@ -71,6 +68,18 @@ function Login() {
                             <Input.Password placeholder="Password" />
                         </Form.Item>
                         <Form.Item
+                            label="Confirm password"
+                            name="repeat_password"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your password!'
+                                }
+                            ]}
+                        >
+                            <Input.Password placeholder="Password" />
+                        </Form.Item>
+                        <Form.Item
                             wrapperCol={{
                                 offset: 8,
                                 span: 16,
@@ -78,10 +87,10 @@ function Login() {
                         >
                             <Space size='small'>
                                 <Button type="primary" htmlType="submit">
-                                    Log in
+                                    Register
                                 </Button>
-                                Or
-                                <Link to='/register'>register now!</Link>
+                                Already have an account?
+                                <Link to='/login'>Login now!</Link>
                             </Space>
                         </Form.Item>
                     </Form>
@@ -91,4 +100,4 @@ function Login() {
     )
 }
 
-export default Login;
+export default Register;
