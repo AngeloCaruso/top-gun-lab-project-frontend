@@ -11,13 +11,20 @@ export async function getAllCrons() {
 }
 
 export async function findCron(id) {
-    const request = await fetch(`${env.url}/crons/${id}`);
+    const request = await fetch(`${env.url}/crons/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${getCookie('jwt')}`
+        }
+    });
     return await request.json();
 }
 
 export async function createCron(cron) {
     const request = await fetch(`${env.url}/crons/`, {
         method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${getCookie('jwt')}`
+        },
         body: {
             ...cron
         }
@@ -28,6 +35,9 @@ export async function createCron(cron) {
 export async function updateCron(cron) {
     const request = await fetch(`${env.url}/crons/${cron.id}`, {
         method: 'PATCH',
+        headers: {
+            'Authorization': `Bearer ${getCookie('jwt')}`
+        },
         body: {
             ...cron
         }
@@ -37,7 +47,10 @@ export async function updateCron(cron) {
 
 export async function deleteCron(id) {
     const request = await fetch(`${env.url}/crons/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${getCookie('jwt')}`
+        }
     });
     return await request.json();
 }

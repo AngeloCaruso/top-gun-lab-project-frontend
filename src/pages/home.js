@@ -1,7 +1,7 @@
 import { DeleteOutlined, EditOutlined, ExceptionOutlined, FieldTimeOutlined } from '@ant-design/icons';
-import { Layout, Card, Table, Tag, Space, Button } from 'antd';
+import { Layout, Card, Table, Tag, Space, Button, Popconfirm, message } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { getAllCrons } from '../api/cron-service';
+import { getAllCrons, deleteCron } from '../api/cron-service';
 
 const { Header, Content, Footer } = Layout;
 
@@ -16,6 +16,20 @@ function Home() {
             setList(response.data)
         })
     }, []);
+
+    const confirm = (id) => {
+        deleteCron(id)
+            .then((response) => {
+                if (response.success) {
+                    const index = list.findIndex(cron => {
+                        return cron._id === id
+                    })
+                    list.splice(index, 1)
+                    setList([...list])
+                    message.success('CRON Job deleted correctly');
+                }
+            });
+    };
 
     const columns = [
         {
@@ -51,7 +65,14 @@ function Home() {
                 <Space size='small'>
                     <Button icon={<ExceptionOutlined />} />
                     <Button icon={<EditOutlined />} />
-                    <Button danger icon={<DeleteOutlined />} />
+                    <Popconfirm
+                        title="Are you sure to delete this CRON Job?"
+                        onConfirm={() => confirm(cron._id)}
+                        okText="Yes"
+                        cancelText="No"
+                    >
+                        <Button danger icon={<DeleteOutlined />} />
+                    </Popconfirm>
                 </Space>
             )
         }
@@ -59,7 +80,7 @@ function Home() {
 
     return (
         <>
-            <Layout style={{height: '100vh'}}>
+            <Layout style={{ height: '100vh' }}>
                 <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
                     <h1 className='white-text'>CRON MANAGER</h1>
                 </Header>
