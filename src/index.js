@@ -1,19 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from './pages/home';
-import 'antd/dist/antd.css';
-import './App.css';
+import Main from './components/layout/Main';
+import Home from './pages/home2';
 import Login from './pages/login';
 import Register from './pages/register';
+import './index.css';
+import 'antd/dist/antd.css';
+import './App.css';
+import "./assets/styles/main.css";
+import "./assets/styles/responsive.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Home />} />
+      <Route path='/' element={<Main><Home /></Main>} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path="*" element={

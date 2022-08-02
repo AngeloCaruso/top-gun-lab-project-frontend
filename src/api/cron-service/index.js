@@ -54,3 +54,12 @@ export async function deleteCron(id) {
     });
     return await request.json();
 }
+
+export async function getLogsByUser() {
+    const request = await fetch(`${env.url}/cron-logs/user`, {
+        headers: {
+            'Authorization': `Bearer ${getCookie('jwt')}`
+        }
+    })
+    return await request.json();
+}
