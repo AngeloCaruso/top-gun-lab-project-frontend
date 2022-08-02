@@ -47,3 +47,9 @@
 .white-text {
   color: #fff;
 }
+
+.my-project-cron-clear-button{
+  color: #fff !important;
+  border-color: #1890ff !important;
+  background: #1890ff !important;
+}
