@@ -10,6 +10,7 @@ import Logs from './pages/logs';
 import RequireAuth from './components/auth/RequireAuth';
 import ValidateAuthenticated from './components/auth/ValidateAuthenticated';
 import { Result } from 'antd';
+import CreateEdit from './pages/createEdit';
 import './index.css';
 import 'antd/dist/antd.css';
 import './App.css';
@@ -24,6 +25,7 @@ root.render(
         <Route path='/dashboard' element={<RequireAuth />}>
           <Route path='jobs' element={<Main><Home /></Main>}></Route>
           <Route path='logs/:id' element={<Main><Logs /></Main>}></Route>
+          <Route path='/new-cron' element={<Main><CreateEdit/></Main>} />
         </Route>
         <Route path='/login' element={<ValidateAuthenticated><Login /></ValidateAuthenticated>} />
         <Route path='/register' element={<ValidateAuthenticated><Register /></ValidateAuthenticated>} />
