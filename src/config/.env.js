@@ -1,3 +1,3 @@
 export const env = {
-    url: 'https://admin-cron-backend.herokuapp.com/api/v1'
+    url: 'http://localhost:5000/api/v1'
 }

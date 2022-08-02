@@ -1,5 +1,5 @@
 import { env } from '../../config/.env';
-import { getCookie } from '../../utils/cookies.js'
+import { deleteCookie, getCookie } from '../../utils/cookies.js'
 
 export async function getAllCrons() {
     const request = await fetch(`${env.url}/crons/`, {
@@ -7,16 +7,17 @@ export async function getAllCrons() {
             'Authorization': `Bearer ${getCookie('jwt')}`
         }
     });
-    return await request.json();
-}
 
-export async function findCron(id) {
-    const request = await fetch(`${env.url}/crons/${id}`, {
-        headers: {
-            'Authorization': `Bearer ${getCookie('jwt')}`
-        }
-    });
-    return await request.json();
+    if (request.status == 401) {
+        deleteCookie('jwt');
+    }
+
+    const response = await request.json();
+
+    return {
+        status: request.ok || request.status,
+        data: response.data
+    }
 }
 
 export async function createCron(cron) {
@@ -28,7 +29,17 @@ export async function createCron(cron) {
         },
         body: JSON.stringify(cron),
     });
-    return  request;
+
+    if (request.status == 401) {
+        deleteCookie('jwt');
+    }
+
+    const response = await request.json();
+
+    return {
+        status: request.ok || request.status,
+        data: response.data
+    }
 }
 
 export async function updateCron(cron) {
@@ -51,7 +62,17 @@ export async function deleteCron(id) {
             'Authorization': `Bearer ${getCookie('jwt')}`
         }
     });
-    return await request.json();
+
+    if (request.status == 401) {
+        deleteCookie('jwt');
+    }
+
+    const response = await request.json();
+
+    return {
+        status: request.ok || request.status,
+        data: response.data
+    }
 }
 
 export async function getLogsByUser() {
@@ -60,5 +81,34 @@ export async function getLogsByUser() {
             'Authorization': `Bearer ${getCookie('jwt')}`
         }
     })
-    return await request.json();
+
+    if (request.status == 401) {
+        deleteCookie('jwt');
+    }
+
+    const response = await request.json();
+
+    return {
+        status: request.ok || request.status,
+        data: response.data
+    }
+}
+
+export async function getLogsByCron(id) {
+    const request = await fetch(`${env.url}/cron-logs/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${getCookie('jwt')}`
+        }
+    })
+
+    if (request.status == 401) {
+        deleteCookie('jwt');
+    }
+
+    const response = await request.json();
+
+    return {
+        status: request.ok || request.status,
+        data: response.data
+    }
 }
