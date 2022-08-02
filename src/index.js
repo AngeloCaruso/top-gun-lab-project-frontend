@@ -6,6 +6,7 @@ import Main from './components/layout/Main';
 import Home from './pages/home2';
 import Login from './pages/login';
 import Register from './pages/register';
+import CreateEdit from './pages/createEdit';
 import './index.css';
 import 'antd/dist/antd.css';
 import './App.css';
@@ -19,6 +20,7 @@ root.render(
       <Route path='/' element={<Main><Home /></Main>} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
+      <Route path='/new-cron' element={<Main><CreateEdit/></Main>} />
       <Route path="*" element={
         <main style={{ padding: "1rem" }}>
           <p>There's nothing here!</p>

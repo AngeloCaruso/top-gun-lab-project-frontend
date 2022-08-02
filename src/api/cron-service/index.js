@@ -23,13 +23,12 @@ export async function createCron(cron) {
     const request = await fetch(`${env.url}/crons/`, {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${getCookie('jwt')}`
+            'Authorization': `Bearer ${getCookie('jwt')}`,
+            'content-type': 'application/json'
         },
-        body: {
-            ...cron
-        }
+        body: JSON.stringify(cron),
     });
-    return await request.json();
+    return  request;
 }
 
 export async function updateCron(cron) {
