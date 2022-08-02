@@ -20,7 +20,7 @@ function Login() {
 
                 document.cookie = `jwt=${response.data.token}`
 
-                navigate('/');
+                navigate('/dashboard/jobs');
             })
     };
 

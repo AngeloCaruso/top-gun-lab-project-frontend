@@ -1,5 +1,5 @@
 import { env } from '../../config/.env';
-import { getCookie } from '../../utils/cookies.js'
+import { deleteCookie, getCookie } from '../../utils/cookies.js'
 
 export async function getAllCrons() {
     const request = await fetch(`${env.url}/crons/`, {
@@ -7,7 +7,17 @@ export async function getAllCrons() {
             'Authorization': `Bearer ${getCookie('jwt')}`
         }
     });
-    return await request.json();
+
+    if (request.status == 401) {
+        deleteCookie('jwt');
+    }
+
+    const response = await request.json();
+
+    return {
+        status: request.ok || request.status,
+        data: response.data
+    }
 }
 
 export async function findCron(id) {
@@ -16,6 +26,7 @@ export async function findCron(id) {
             'Authorization': `Bearer ${getCookie('jwt')}`
         }
     });
+
     return await request.json();
 }
 
@@ -52,7 +63,17 @@ export async function deleteCron(id) {
             'Authorization': `Bearer ${getCookie('jwt')}`
         }
     });
-    return await request.json();
+
+    if (request.status == 401) {
+        deleteCookie('jwt');
+    }
+
+    const response = await request.json();
+
+    return {
+        status: request.ok || request.status,
+        data: response.data
+    }
 }
 
 export async function getLogsByUser() {
@@ -61,5 +82,34 @@ export async function getLogsByUser() {
             'Authorization': `Bearer ${getCookie('jwt')}`
         }
     })
-    return await request.json();
+
+    if (request.status == 401) {
+        deleteCookie('jwt');
+    }
+
+    const response = await request.json();
+
+    return {
+        status: request.ok || request.status,
+        data: response.data
+    }
+}
+
+export async function getLogsByCron(id) {
+    const request = await fetch(`${env.url}/cron-logs/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${getCookie('jwt')}`
+        }
+    })
+
+    if (request.status == 401) {
+        deleteCookie('jwt');
+    }
+
+    const response = await request.json();
+
+    return {
+        status: request.ok || request.status,
+        data: response.data
+    }
 }
