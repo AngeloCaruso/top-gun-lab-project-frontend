@@ -25,7 +25,7 @@ root.render(
         <Route path='/dashboard' element={<RequireAuth />}>
           <Route path='jobs' element={<Main><Home /></Main>}></Route>
           <Route path='logs/:id' element={<Main><Logs /></Main>}></Route>
-          <Route path='/new-cron' element={<Main><CreateEdit/></Main>} />
+          <Route path='new-cron' element={<Main><CreateEdit/></Main>} />
         </Route>
         <Route path='/login' element={<ValidateAuthenticated><Login /></ValidateAuthenticated>} />
         <Route path='/register' element={<ValidateAuthenticated><Register /></ValidateAuthenticated>} />

@@ -18,9 +18,15 @@ function CreateEdit() {
         }
         const cron = { ...data, schedule: value };
         createCron(cron).then((response) => {
-            if (response.ok) {
-                navigate('/');
+            if (response.status === 401) {
+                navigate('/login');
+                return;
             }
+
+            if (response.status) {
+                navigate('/dashboard/jobs');
+            }
+
             openNotification('top', response.message)
         })
 
