@@ -28,7 +28,7 @@ function Logs() {
                     setLoading(false);
                 }
             })
-    }, []);
+    }, [id, navigate]);
 
     const showInfoModal = ({status,response_log}) => {
         Modal.info({
@@ -84,8 +84,8 @@ function Logs() {
     return (
         <>
             <div className="tabled">
-                <Row gutter={[24, 0]}>
-                    <Col xs="24" xl={24}>
+                <Row>
+                    <Col sm={24}>
                         <Card
                             bordered={false}
                             className="criclebox tablespace mb-24"

@@ -30,9 +30,7 @@ function Edit() {
                     });
                 }
             })
-    }, []);
-
-
+    }, [form, id, navigate]);
 
     const onFinish = (data) => {
         if (!data.active) {
@@ -52,7 +50,6 @@ function Edit() {
 
             openNotification('top', response.message)
         })
-
     };
 
     const openNotification = (placement, body) => {

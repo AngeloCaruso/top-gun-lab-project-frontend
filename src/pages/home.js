@@ -1,4 +1,4 @@
-import { Card, Col, Row, Typography, Button, Timeline, Radio, Space, Popconfirm, message, Table, Tag, Badge } from "antd";
+import { Card, Col, Row, Typography, Button, Timeline, Space, Popconfirm, message, Table, Tag, Badge } from "antd";
 import { ExceptionOutlined, EditOutlined, DeleteOutlined, PauseOutlined, IssuesCloseOutlined, ClockCircleOutlined } from "@ant-design/icons";
 
 import Paragraph from "antd/lib/typography/Paragraph";
@@ -48,7 +48,7 @@ function Home() {
                     setTimeLine(response.data);
                 }
             });
-    }, []);
+    }, [navigate]);
 
     const confirm = (id) => {
         setLoading(true);
@@ -70,8 +70,6 @@ function Home() {
                 }
             });
     };
-
-    const onChange = (e) => console.log(`radio checked:${e.target.value}`);
 
     const onClickLogs = (id) => {
         navigate(`/dashboard/logs/${id}`);
@@ -200,15 +198,6 @@ function Home() {
                                     <Paragraph className="lastweek">
                                         Created jobs
                                     </Paragraph>
-                                </div>
-                                <div className="ant-filtertabs">
-                                    <div className="antd-pro-pages-dashboard-analysis-style-salesExtra">
-                                        <Radio.Group onChange={onChange} defaultValue="a">
-                                            <Radio.Button value="a">ALL</Radio.Button>
-                                            <Radio.Button value="b">ACTIVE</Radio.Button>
-                                            <Radio.Button value="c">DISABLED</Radio.Button>
-                                        </Radio.Group>
-                                    </div>
                                 </div>
                             </div>
                             <div className="ant-list-box table-responsive">
