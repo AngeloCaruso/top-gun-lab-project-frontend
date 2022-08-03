@@ -10,18 +10,19 @@ const { Header, Footer, Content } = Layout;
 function Login() {
     const navigate = useNavigate();
 
-    const onFinish = (data) => {
-        login(data)
-            .then((response) => {
-                if (!response.success) {
-                    openNotification('top', response.message)
-                    return;
-                }
-
-                document.cookie = `jwt=${response.data.token}; Path=/;`;
-
+    const onFinish = async (data) => {
+        try {
+            const response = await login(data)
+            if (response.success) {
+                document.cookie = `user=${response.data.user.email}`;
+                document.cookie = `jwt=${response.data.token}`;
                 navigate('/dashboard/jobs');
-            })
+            } else {
+                throw 500;
+            }
+        } catch (error) {
+            openNotification('top', 'Login error. Please, try again later');
+        }
     };
 
     const openNotification = (placement, body) => {

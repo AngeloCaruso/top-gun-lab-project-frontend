@@ -11,17 +11,18 @@ function Register() {
     const navigate = useNavigate();
 
     const onFinish = (data) => {
-        register(data)
-            .then((response) => {
-                if (!response.success) {
-                    openNotification('top', response.message)
-                    return;
-                }
-
+        try {
+            const response = register(data);
+            if (response.success) {
+                document.cookie = `user=${response.data.user.email}`;
                 document.cookie = `jwt=${response.data.token}`
-
                 navigate('/dashboard/jobs');
-            })
+            } else {
+                throw 500;
+            }
+        } catch (error) {
+            openNotification('top', 'Register error. Please, try again later')
+        }
     };
 
     const openNotification = (placement, body) => {

@@ -1,4 +1,5 @@
 import { env } from '../../config/.env';
+import { deleteCookie } from '../../utils/cookies';
 
 export async function login(data) {
     const request = await fetch(`${env.url}/auth/login`, {
@@ -24,4 +25,9 @@ export async function register(data) {
         })
     });
     return await request.json();
+}
+
+export function logoutUser() {
+    deleteCookie('user');
+    deleteCookie('jwt');
 }

@@ -1,24 +1,26 @@
-import { Row, Col, Breadcrumb, Dropdown, Menu, Space, Button  } from "antd";
+import { Row, Col, Breadcrumb, Dropdown, Menu, Space, Button } from "antd";
 
-import { NavLink, Link, useNavigate } from "react-router-dom";
-import { UserOutlined, DownOutlined  } from "@ant-design/icons";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logoutUser } from "../../api/user/index.js";
 import { getCookie, deleteCookie } from '../../utils/cookies.js'
 
 function Header({ name, subName }) {
     const navigate = useNavigate();
-    const logout = ()=>{
-        console.log('hola');
-        
-        deleteCookie('jwt');
-         navigate('/login');
-         return;
+
+    const logout = () => {
+        logoutUser();
+        navigate('/login');
+        return;
     }
+
     const menu = (
         <Menu
             items={[
                 {
-                    label:<a href="#"  onClick={logout}>logout</a> ,
+                    label: 'Logout',
                     key: '0',
+                    danger: true,
+                    onClick: logout
                 }
             ]}
         />
@@ -46,21 +48,13 @@ function Header({ name, subName }) {
                     </div>
                 </Col>
                 <Col span={24} md={18} className="header-control">
-
-                    {getCookie('jwt') ?
-                          <Dropdown overlay={menu} trigger={['click']}>
-                          <a onClick={(e) => e.preventDefault()}>
+                    <Dropdown overlay={menu}>
+                        <Button>
                             <Space>
-                            <UserOutlined /> Account
-                              <DownOutlined />
+                                {getCookie('user')}
                             </Space>
-                          </a>
-                        </Dropdown>
-                        :
-                        <Link to="/sign-in" className="btn-sign-in">
-                            <UserOutlined />
-                            <span>Profile</span>
-                        </Link>}
+                        </Button>
+                    </Dropdown>
                 </Col>
             </Row>
         </>
