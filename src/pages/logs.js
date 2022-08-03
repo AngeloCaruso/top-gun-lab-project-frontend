@@ -30,14 +30,16 @@ function Logs() {
             })
     }, []);
 
-    const showInfoModal = (data) => {
+    const showInfoModal = ({status,response_log}) => {
         Modal.info({
             title: 'CRON Job Captured response',
             centered: true,
             width: 1000,
             content: (
                 <Typography>
-                    <pre style={{ height: '15vh', padding: 20 }}>{data}</pre>
+                    <span>code Status:{status} </span>
+                    {getResponseTag(status)}
+                    <pre style={{ height: '15vh', padding: 20 }}>{response_log}</pre>
                 </Typography>
             ),
             onOk() { },
@@ -73,7 +75,7 @@ function Logs() {
             align: 'center',
             render: (cron) => (
                 <Space size='small'>
-                    <Button icon={<InboxOutlined />} onClick={() => showInfoModal(cron.response_log)}>Response</Button>
+                    <Button icon={<InboxOutlined />} onClick={() => showInfoModal(cron)}>Response</Button>
                 </Space>
             )
         }

@@ -77,6 +77,10 @@ function Home() {
         navigate(`/dashboard/logs/${id}`);
     }
 
+    const onClickEdit = (id) => {
+        navigate(`/dashboard/edit/${id}`);
+    }
+
     const topCards = [
         {
             today: "Total created jobs",
@@ -140,7 +144,7 @@ function Home() {
             render: (cron) => (
                 <Space size='small'>
                     <Button icon={<ExceptionOutlined />} onClick={() => onClickLogs(cron._id)} >History</Button>
-                    <Button icon={<EditOutlined />}>Edit</Button>
+                    <Button icon={<EditOutlined />}  onClick={() => onClickEdit(cron._id)} >Edit</Button>
                     <Popconfirm
                         title="Are you sure to delete this CRON Job?"
                         onConfirm={() => confirm(cron._id)}

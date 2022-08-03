@@ -1,3 +1,3 @@
 export const env = {
-    url: 'http://localhost:5000/api/v1'
+    url: process.env.REACT_APP_URL_BACKEND || 'http://localhost:5000'
 }
