@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Navigate, Route, Routes } from "react-router-dom";
 import Main from './components/layout/Main';
 import Home from './pages/home';
 import Login from './pages/login';
@@ -25,10 +25,11 @@ root.render(
         <Route path='/dashboard' element={<RequireAuth />}>
           <Route path='jobs' element={<Main><Home /></Main>}></Route>
           <Route path='logs/:id' element={<Main><Logs /></Main>}></Route>
-          <Route path='new-cron' element={<Main><CreateEdit/></Main>} />
+          <Route path='new-cron' element={<Main><CreateEdit /></Main>} />
         </Route>
         <Route path='/login' element={<ValidateAuthenticated><Login /></ValidateAuthenticated>} />
         <Route path='/register' element={<ValidateAuthenticated><Register /></ValidateAuthenticated>} />
+        <Route path='/' element={<Navigate to='/login' />}></Route>
         <Route path="*" element={
           <main style={{ padding: "1rem" }}>
             <Result
