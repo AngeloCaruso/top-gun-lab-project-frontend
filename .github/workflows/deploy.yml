@@ -1,0 +1,23 @@
+name: Deploy APP
+
+on:
+  push:
+    branches:
+    - main
+
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+
+      # Install new dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Build production files
+      - name: Build static files
+        run: npm run build
