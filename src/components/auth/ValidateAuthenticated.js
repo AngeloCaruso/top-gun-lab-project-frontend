@@ -9,7 +9,7 @@ function ValidateAuthenticated({ children }) {
         if (getCookie('jwt')) {
             navigate('/dashboard/jobs');
         }
-    }, []);
+    }, [navigate]);
     return children;
 }
 

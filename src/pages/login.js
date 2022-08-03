@@ -18,10 +18,10 @@ function Login() {
                 document.cookie = `jwt=${response.data.token}`;
                 navigate('/dashboard/jobs');
             } else {
-                throw 500;
+                throw new Error('Username or password incorrect');
             }
         } catch (error) {
-            openNotification('top', 'Login error. Please, try again later');
+            openNotification('top', error.message || 'Login error. Please, try again later');
         }
     };
 

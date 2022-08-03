@@ -8,7 +8,7 @@ export async function getAllCrons() {
         }
     });
 
-    if (request.status == 401) {
+    if (request.status === 401) {
         deleteCookie('jwt');
     }
 
@@ -27,7 +27,7 @@ export async function getCron(id) {
         }
     });
 
-    if (request.status == 401) {
+    if (request.status === 401) {
         deleteCookie('jwt');
     }
 
@@ -49,7 +49,7 @@ export async function createCron(cron) {
         body: JSON.stringify(cron),
     });
 
-    if (request.status == 401) {
+    if (request.status === 401) {
         deleteCookie('jwt');
     }
 
@@ -70,7 +70,7 @@ export async function updateCron(cron) {
         },
         body: JSON.stringify(cron),
     });
-    if (request.status == 401) {
+    if (request.status === 401) {
         deleteCookie('jwt');
     }
 
@@ -90,7 +90,7 @@ export async function deleteCron(id) {
         }
     });
 
-    if (request.status == 401) {
+    if (request.status === 401) {
         deleteCookie('jwt');
     }
 
@@ -109,7 +109,7 @@ export async function getLogsByUser() {
         }
     })
 
-    if (request.status == 401) {
+    if (request.status === 401) {
         deleteCookie('jwt');
     }
 
@@ -128,7 +128,7 @@ export async function getLogsByCron(id) {
         }
     })
 
-    if (request.status == 401) {
+    if (request.status === 401) {
         deleteCookie('jwt');
     }
 

@@ -6,10 +6,11 @@ function RequireAuth({ children }) {
     const navigate = useNavigate();
 
     useEffect(() => {
+        console.log('triggered');
         if (!getCookie('jwt')) {
             navigate('/login');
         }
-    }, [])
+    }, [navigate])
 
     return (
         <>
