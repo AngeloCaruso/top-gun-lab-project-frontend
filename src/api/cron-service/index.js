@@ -20,6 +20,25 @@ export async function getAllCrons() {
     }
 }
 
+export async function getCron(id) {
+    const request = await fetch(`${env.url}/crons/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${getCookie('jwt')}`
+        }
+    });
+
+    if (request.status == 401) {
+        deleteCookie('jwt');
+    }
+
+    const response = await request.json();
+
+    return {
+        status: request.ok || request.status,
+        data: response.data
+    }
+}
+
 export async function createCron(cron) {
     const request = await fetch(`${env.url}/crons/`, {
         method: 'POST',
@@ -37,7 +56,7 @@ export async function createCron(cron) {
     const response = await request.json();
 
     return {
-        status: request.ok || request.status,
+        status: request.status,
         data: response.data
     }
 }
@@ -46,13 +65,21 @@ export async function updateCron(cron) {
     const request = await fetch(`${env.url}/crons/${cron.id}`, {
         method: 'PATCH',
         headers: {
-            'Authorization': `Bearer ${getCookie('jwt')}`
+            'Authorization': `Bearer ${getCookie('jwt')}`,
+            'content-type': 'application/json'
         },
-        body: {
-            ...cron
-        }
+        body: JSON.stringify(cron),
     });
-    return await request.json();
+    if (request.status == 401) {
+        deleteCookie('jwt');
+    }
+
+    const response = await request.json();
+
+    return {
+        status: request.status,
+        data: response.data
+    }
 }
 
 export async function deleteCron(id) {

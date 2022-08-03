@@ -1,30 +1,53 @@
 import { Button, Row, Col, Typography, Form, Input, Card, Switch, notification } from "antd";
 import { TagOutlined, GlobalOutlined } from '@ant-design/icons';
 import { Cron } from 'react-js-cron';
-import { useState } from "react";
-import { createCron } from '../api/cron-service';
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { updateCron, getCron } from '../api/cron-service';
+import { useNavigate, useParams } from "react-router-dom";
 
 import 'react-js-cron/dist/styles.css';
 
-function CreateEdit() {
+function Edit() {
+    const { id } = useParams();
     const navigate = useNavigate();
-
     const [value, setValue] = useState('30 5 * * 1,6');
+    const [form] = Form.useForm();
+
+    useEffect(() => {
+        getCron(id)
+            .then((response) => {
+                if (response.status === 401) {
+                    navigate('/login');
+                    return;
+                }
+
+                if (response.status) {
+                    setValue(response.data.schedule);
+                    form.setFieldsValue({
+                        name: response.data.name,
+                        url: response.data.url,
+                        active: response.data.active
+                    });
+                }
+            })
+    }, []);
+
+
 
     const onFinish = (data) => {
         if (!data.active) {
             data.active = false;
         }
-        const cron = { ...data, schedule: value };
-        createCron(cron).then((response) => {
+        const cron = { id ,...data, schedule: value };
+        updateCron(cron).then((response) => {
             if (response.status === 401) {
                 navigate('/login');
                 return;
             }
 
-            if (response.status) {
+            if (response.status=== 200) {
                 navigate('/dashboard/jobs');
+                return;
             }
 
             openNotification('top', response.message)
@@ -45,6 +68,7 @@ function CreateEdit() {
             <div className="layout-content">
                 <Card bordered={false} className="criclebox h-full">
                     <Form
+                        form={form}
                         onFinish={onFinish}
                         layout="horizontal"
                         className="row-col"
@@ -120,7 +144,7 @@ function CreateEdit() {
                                 htmlType="submit"
                                 style={{ width: "100%" }}
                             >
-                                Create
+                                Update
                             </Button>
                         </Form.Item>
                     </Form>
@@ -132,4 +156,4 @@ function CreateEdit() {
     );
 }
 
-export default CreateEdit;
+export default Edit;
