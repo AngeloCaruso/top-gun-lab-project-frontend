@@ -23,7 +23,7 @@ function Create() {
                 return;
             }
 
-            if (response.status==200) {
+            if ( response.status===201 ) {
                 navigate('/dashboard/jobs');
                 return;
             }

@@ -18,7 +18,7 @@ function Login() {
                     return;
                 }
 
-                document.cookie = `jwt=${response.data.token}`
+                document.cookie = `jwt=${response.data.token}; Path=/;`;
 
                 navigate('/dashboard/jobs');
             })
