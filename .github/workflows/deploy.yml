@@ -14,6 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      # Generate .env file
+      - name: Generate environment file
+        run: echo REACT_APP_URL_BACKEND=${{ secrets.REACT_APP_URL_BACKEND}} > .env
+
       # Install new dependencies
       - name: Install dependencies
         run: npm install
