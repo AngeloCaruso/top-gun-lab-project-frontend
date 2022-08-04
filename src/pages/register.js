@@ -3,7 +3,6 @@ import { Layout, Button, Typography, Card, Form, Input, notification } from "ant
 
 import { Link, useNavigate } from "react-router-dom";
 import { register } from '../api/user';
-import { env } from "../config/.env";
 
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
@@ -17,7 +16,7 @@ function Register() {
             if (response.success) {
                 document.cookie = `user=${response.data.user.email}`;
                 document.cookie = `jwt=${response.data.token}`
-                navigate(`${env.baseUrl}/dashboard/jobs`);
+                navigate(`/dashboard/jobs`);
             }
         } catch (error) {
             openNotification('top', 'Register error. Please, try again later')

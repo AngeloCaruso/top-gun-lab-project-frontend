@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { env } from "../../config/.env.js";
 import { getCookie } from '../../utils/cookies.js'
 
 function ValidateAuthenticated({ children }) {
@@ -8,7 +7,7 @@ function ValidateAuthenticated({ children }) {
 
     useEffect(() => {
         if (getCookie('jwt')) {
-            navigate(`${env.baseUrl}/dashboard/jobs`);
+            navigate(`/dashboard/jobs`);
         }
     }, [navigate]);
     return children;

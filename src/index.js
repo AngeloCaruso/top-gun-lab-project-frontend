@@ -32,12 +32,7 @@ root.render(
         </Route>
         <Route path='/login' element={<ValidateAuthenticated><Login /></ValidateAuthenticated>} />
         <Route path='/register' element={<ValidateAuthenticated><Register /></ValidateAuthenticated>} />
-        <Route path='/' element={<Navigate to={`${env.baseUrl}/login`} />}></Route>
-        <Route path="*" element={<Page404 />} />
-      </Routes>
-    </BrowserRouter>
-    <BrowserRouter>
-      <Routes>
+        <Route path='/' element={<Navigate to={`/login`} />}></Route>
         <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>

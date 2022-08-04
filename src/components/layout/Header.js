@@ -2,7 +2,6 @@ import { Row, Col, Breadcrumb, Dropdown, Menu, Space, Button } from "antd";
 
 import { NavLink, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../api/user/index.js";
-import { env } from "../../config/.env.js";
 import { getCookie } from '../../utils/cookies.js'
 
 function Header({ name, subName }) {
@@ -10,7 +9,7 @@ function Header({ name, subName }) {
 
     const logout = () => {
         logoutUser();
-        navigate(`${env.baseUrl}/login`);
+        navigate(`/login`);
         return;
     }
 
