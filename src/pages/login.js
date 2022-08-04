@@ -17,7 +17,7 @@ function Login() {
             if (response.success) {
                 document.cookie = `user=${response.data.user.email}`;
                 document.cookie = `jwt=${response.data.token}`;
-                navigate(`${env.url}/dashboard/jobs`);
+                navigate(`${env.baseUrl}/dashboard/jobs`);
             } else {
                 throw new Error('Username or password incorrect');
             }

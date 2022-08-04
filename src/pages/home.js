@@ -25,7 +25,7 @@ function Home() {
         getAllCrons()
             .then(response => {
                 if (response.status === 401) {
-                    navigate(`${env.url}/login`);
+                    navigate(`${env.baseUrl}/login`);
                     return;
                 }
 
@@ -41,7 +41,7 @@ function Home() {
         getLogsByUser()
             .then(response => {
                 if (response.status === 401) {
-                    navigate(`${env.url}/login`);
+                    navigate(`${env.baseUrl}/login`);
                     return;
                 }
 
@@ -56,7 +56,7 @@ function Home() {
         deleteCron(id)
             .then((response) => {
                 if (response.status === 401) {
-                    navigate(`${env.url}/login`);
+                    navigate(`${env.baseUrl}/login`);
                     return;
                 }
 
@@ -73,11 +73,11 @@ function Home() {
     };
 
     const onClickLogs = (id) => {
-        navigate(`${env.url}/dashboard/logs/${id}`);
+        navigate(`${env.baseUrl}/dashboard/logs/${id}`);
     }
 
     const onClickEdit = (id) => {
-        navigate(`${env.url}/dashboard/edit/${id}`);
+        navigate(`${env.baseUrl}/dashboard/edit/${id}`);
     }
 
     const topCards = [

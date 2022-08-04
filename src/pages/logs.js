@@ -20,7 +20,7 @@ function Logs() {
         getLogsByCron(id)
             .then((response) => {
                 if (response.status === 401) {
-                    navigate(`${env.url}/login`);
+                    navigate(`${env.baseUrl}/login`);
                     return;
                 }
 

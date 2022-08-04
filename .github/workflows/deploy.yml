@@ -7,7 +7,6 @@ on:
 
   workflow_dispatch:
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,7 +15,9 @@ jobs:
 
       # Generate .env file
       - name: Generate environment file
-        run: echo REACT_APP_URL_BACKEND=${{ secrets.REACT_APP_URL_BACKEND}} > .env
+        run: |
+          echo REACT_APP_URL_BACKEND=${{ secrets.REACT_APP_URL_BACKEND}} >> .env
+          echo REACT_BASE_URL=${{ secrets.REACT_BASE_URL}} >> .env
 
       # Install new dependencies
       - name: Install dependencies

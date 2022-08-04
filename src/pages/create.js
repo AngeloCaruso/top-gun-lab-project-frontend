@@ -20,12 +20,12 @@ function Create() {
         const cron = { ...data, schedule: value };
         createCron(cron).then((response) => {
             if (response.status === 401) {
-                navigate(`${env.url}/login`);
+                navigate(`${env.baseUrl}/login`);
                 return;
             }
 
             if (response.status === 201) {
-                navigate(`${env.url}/dashboard/jobs`);
+                navigate(`${env.baseUrl}/dashboard/jobs`);
                 return;
             }
 

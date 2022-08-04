@@ -10,7 +10,7 @@ function Header({ name, subName }) {
 
     const logout = () => {
         logoutUser();
-        navigate(`${env.url}/login`);
+        navigate(`${env.baseUrl}/login`);
         return;
     }
 

@@ -17,7 +17,7 @@ function Register() {
             if (response.success) {
                 document.cookie = `user=${response.data.user.email}`;
                 document.cookie = `jwt=${response.data.token}`
-                navigate(`${env.url}/dashboard/jobs`);
+                navigate(`${env.baseUrl}/dashboard/jobs`);
             }
         } catch (error) {
             openNotification('top', 'Register error. Please, try again later')

@@ -8,7 +8,7 @@ function RequireAuth({ children }) {
 
     useEffect(() => {
         if (!getCookie('jwt')) {
-            navigate(`${env.url}/login`);
+            navigate(`${env.baseUrl}/login`);
         }
     }, [navigate])
 

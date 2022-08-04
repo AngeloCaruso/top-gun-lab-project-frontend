@@ -18,7 +18,7 @@ function Edit() {
         getCron(id)
             .then((response) => {
                 if (response.status === 401) {
-                    navigate(`${env.url}/login`);
+                    navigate(`${env.baseUrl}/login`);
                     return;
                 }
 
@@ -40,12 +40,12 @@ function Edit() {
         const cron = { id ,...data, schedule: value };
         updateCron(cron).then((response) => {
             if (response.status === 401) {
-                navigate(`${env.url}/login`);
+                navigate(`${env.baseUrl}/login`);
                 return;
             }
 
             if (response.status=== 200) {
-                navigate(`${env.url}/dashboard/jobs`);
+                navigate(`${env.baseUrl}/dashboard/jobs`);
                 return;
             }
 

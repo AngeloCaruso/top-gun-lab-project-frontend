@@ -8,7 +8,7 @@ function ValidateAuthenticated({ children }) {
 
     useEffect(() => {
         if (getCookie('jwt')) {
-            navigate(`${env.url}/dashboard/jobs`);
+            navigate(`${env.baseUrl}/dashboard/jobs`);
         }
     }, [navigate]);
     return children;

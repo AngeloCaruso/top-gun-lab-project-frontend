@@ -22,7 +22,7 @@ import { env } from './config/.env';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename={env.url}>
+    <BrowserRouter basename={env.baseUrl}>
       <Routes>
         <Route path='/dashboard' element={<RequireAuth />}>
           <Route path='jobs' element={<Main><Home /></Main>}></Route>
@@ -32,7 +32,7 @@ root.render(
         </Route>
         <Route path='/login' element={<ValidateAuthenticated><Login /></ValidateAuthenticated>} />
         <Route path='/register' element={<ValidateAuthenticated><Register /></ValidateAuthenticated>} />
-        <Route path='/' element={<Navigate to='/login' />}></Route>
+        <Route path='/' element={<Navigate to={`${env.baseUrl}/login`} />}></Route>
         <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>

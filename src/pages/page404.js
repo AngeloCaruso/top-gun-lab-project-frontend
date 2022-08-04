@@ -11,7 +11,7 @@ function Page404() {
                     status="404"
                     title="404"
                     subTitle="Sorry, the page you visited does not exist."
-                    extra={<Link to={`${env.url}/dashboard/jobs`} type="primary">Back Home</Link>}
+                    extra={<Link to={`${env.baseUrl}/dashboard/jobs`} type="primary">Back Home</Link>}
                 />
             </main>
         </>
