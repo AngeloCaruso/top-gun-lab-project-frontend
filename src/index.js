@@ -32,6 +32,7 @@ root.render(
         <Route path='/login' element={<ValidateAuthenticated><Login /></ValidateAuthenticated>} />
         <Route path='/register' element={<ValidateAuthenticated><Register /></ValidateAuthenticated>} />
         <Route path='/' element={<Navigate to='/login' />}></Route>
+        <Route path='/top-gun-lab-project-frontend/' element={<Navigate to='/login' />}></Route>
         <Route path="*" element={
           <main style={{ padding: "1rem" }}>
             <Result
