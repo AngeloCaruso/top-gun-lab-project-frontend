@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { env } from "../../config/.env.js";
 import { getCookie } from '../../utils/cookies.js'
 
 function RequireAuth({ children }) {
@@ -7,7 +8,7 @@ function RequireAuth({ children }) {
 
     useEffect(() => {
         if (!getCookie('jwt')) {
-            navigate('/login');
+            navigate(`${env.url}/login`);
         }
     }, [navigate])
 

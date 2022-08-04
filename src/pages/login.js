@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Layout, Button, Row, Col, Typography, Form, Input, notification } from "antd";
 import signinbg from "../assets/images/logo-cron-manager-3.png";
 import { login } from '../api/user';
+import { env } from "../config/.env";
 
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
@@ -16,7 +17,7 @@ function Login() {
             if (response.success) {
                 document.cookie = `user=${response.data.user.email}`;
                 document.cookie = `jwt=${response.data.token}`;
-                navigate('/dashboard/jobs');
+                navigate(`${env.url}/dashboard/jobs`);
             } else {
                 throw new Error('Username or password incorrect');
             }

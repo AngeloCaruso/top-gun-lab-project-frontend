@@ -8,6 +8,7 @@ import { getAllCrons, deleteCron, getLogsByUser } from '../api/cron-service';
 import { formatDatetime } from "../utils/formatDates";
 import { useNavigate } from "react-router-dom";
 import cronstrue from 'cronstrue';
+import { env } from "../config/.env";
 
 function Home() {
     const { Title, Text } = Typography;
@@ -24,7 +25,7 @@ function Home() {
         getAllCrons()
             .then(response => {
                 if (response.status === 401) {
-                    navigate('/login');
+                    navigate(`${env.url}/login`);
                     return;
                 }
 
@@ -40,7 +41,7 @@ function Home() {
         getLogsByUser()
             .then(response => {
                 if (response.status === 401) {
-                    navigate('/login');
+                    navigate(`${env.url}/login`);
                     return;
                 }
 
@@ -55,7 +56,7 @@ function Home() {
         deleteCron(id)
             .then((response) => {
                 if (response.status === 401) {
-                    navigate('/login');
+                    navigate(`${env.url}/login`);
                     return;
                 }
 
@@ -72,11 +73,11 @@ function Home() {
     };
 
     const onClickLogs = (id) => {
-        navigate(`/dashboard/logs/${id}`);
+        navigate(`${env.url}/dashboard/logs/${id}`);
     }
 
     const onClickEdit = (id) => {
-        navigate(`/dashboard/edit/${id}`);
+        navigate(`${env.url}/dashboard/edit/${id}`);
     }
 
     const topCards = [

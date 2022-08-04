@@ -6,6 +6,7 @@ import { updateCron, getCron } from '../api/cron-service';
 import { useNavigate, useParams } from "react-router-dom";
 
 import 'react-js-cron/dist/styles.css';
+import { env } from "../config/.env";
 
 function Edit() {
     const { id } = useParams();
@@ -17,7 +18,7 @@ function Edit() {
         getCron(id)
             .then((response) => {
                 if (response.status === 401) {
-                    navigate('/login');
+                    navigate(`${env.url}/login`);
                     return;
                 }
 
@@ -39,12 +40,12 @@ function Edit() {
         const cron = { id ,...data, schedule: value };
         updateCron(cron).then((response) => {
             if (response.status === 401) {
-                navigate('/login');
+                navigate(`${env.url}/login`);
                 return;
             }
 
             if (response.status=== 200) {
-                navigate('/dashboard/jobs');
+                navigate(`${env.url}/dashboard/jobs`);
                 return;
             }
 

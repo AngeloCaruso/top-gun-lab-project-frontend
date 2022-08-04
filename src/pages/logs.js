@@ -7,6 +7,7 @@ import { InboxOutlined } from "@ant-design/icons";
 import { getResponseTag } from "../utils/statusGuesser";
 import { formatDatetime } from "../utils/formatDates";
 import cronstrue from 'cronstrue';
+import { env } from "../config/.env";
 
 function Logs() {
     const { id } = useParams();
@@ -19,7 +20,7 @@ function Logs() {
         getLogsByCron(id)
             .then((response) => {
                 if (response.status === 401) {
-                    navigate('/login');
+                    navigate(`${env.url}/login`);
                     return;
                 }
 

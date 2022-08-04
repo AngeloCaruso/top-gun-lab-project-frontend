@@ -6,6 +6,7 @@ import { createCron } from '../api/cron-service';
 import { useNavigate } from "react-router-dom";
 
 import 'react-js-cron/dist/styles.css';
+import { env } from "../config/.env";
 
 function Create() {
     const navigate = useNavigate();
@@ -19,12 +20,12 @@ function Create() {
         const cron = { ...data, schedule: value };
         createCron(cron).then((response) => {
             if (response.status === 401) {
-                navigate('/login');
+                navigate(`${env.url}/login`);
                 return;
             }
 
-            if ( response.status===201 ) {
-                navigate('/dashboard/jobs');
+            if (response.status === 201) {
+                navigate(`${env.url}/dashboard/jobs`);
                 return;
             }
 
