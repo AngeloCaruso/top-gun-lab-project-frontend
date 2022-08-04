@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/top-gun-lab-project-frontend/static/css/main.1549d2c5.css",
-    "main.js": "/top-gun-lab-project-frontend/static/js/main.7b7b373a.js",
-    "static/js/787.6bf67714.chunk.js": "/top-gun-lab-project-frontend/static/js/787.6bf67714.chunk.js",
-    "static/media/bg-signup.jpg": "/top-gun-lab-project-frontend/static/media/bg-signup.bec2ba7098b7ca00f473.jpg",
-    "static/media/info-card-2.jpg": "/top-gun-lab-project-frontend/static/media/info-card-2.9a5119d163ea1e152800.jpg",
-    "static/media/info-card-3.jpg": "/top-gun-lab-project-frontend/static/media/info-card-3.e73b3934a3c41fdb920d.jpg",
-    "static/media/logo-cron-manager-3.png": "/top-gun-lab-project-frontend/static/media/logo-cron-manager-3.5bf627a2916e07997216.png",
-    "index.html": "/top-gun-lab-project-frontend/index.html",
-    "main.1549d2c5.css.map": "/top-gun-lab-project-frontend/static/css/main.1549d2c5.css.map",
-    "main.7b7b373a.js.map": "/top-gun-lab-project-frontend/static/js/main.7b7b373a.js.map",
-    "787.6bf67714.chunk.js.map": "/top-gun-lab-project-frontend/static/js/787.6bf67714.chunk.js.map"
+    "main.css": "/login/static/css/main.8c8482ca.css",
+    "main.js": "/login/static/js/main.19c3911d.js",
+    "static/js/787.6bf67714.chunk.js": "/login/static/js/787.6bf67714.chunk.js",
+    "static/media/bg-signup.jpg": "/login/static/media/bg-signup.bec2ba7098b7ca00f473.jpg",
+    "static/media/info-card-2.jpg": "/login/static/media/info-card-2.9a5119d163ea1e152800.jpg",
+    "static/media/info-card-3.jpg": "/login/static/media/info-card-3.e73b3934a3c41fdb920d.jpg",
+    "static/media/logo-cron-manager-3.png": "/login/static/media/logo-cron-manager-3.5bf627a2916e07997216.png",
+    "index.html": "/login/index.html",
+    "main.8c8482ca.css.map": "/login/static/css/main.8c8482ca.css.map",
+    "main.19c3911d.js.map": "/login/static/js/main.19c3911d.js.map",
+    "787.6bf67714.chunk.js.map": "/login/static/js/787.6bf67714.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1549d2c5.css",
-    "static/js/main.7b7b373a.js"
+    "static/css/main.8c8482ca.css",
+    "static/js/main.19c3911d.js"
   ]
 }
