@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/top-gun-lab-project-frontend/static/css/main.1549d2c5.css",
-    "main.js": "/top-gun-lab-project-frontend/static/js/main.582142c2.js",
+    "main.js": "/top-gun-lab-project-frontend/static/js/main.6166dad9.js",
     "static/js/787.6bf67714.chunk.js": "/top-gun-lab-project-frontend/static/js/787.6bf67714.chunk.js",
     "static/media/bg-signup.jpg": "/top-gun-lab-project-frontend/static/media/bg-signup.bec2ba7098b7ca00f473.jpg",
     "static/media/info-card-2.jpg": "/top-gun-lab-project-frontend/static/media/info-card-2.9a5119d163ea1e152800.jpg",
@@ -9,11 +9,11 @@
     "static/media/logo-cron-manager-3.png": "/top-gun-lab-project-frontend/static/media/logo-cron-manager-3.5bf627a2916e07997216.png",
     "index.html": "/top-gun-lab-project-frontend/index.html",
     "main.1549d2c5.css.map": "/top-gun-lab-project-frontend/static/css/main.1549d2c5.css.map",
-    "main.582142c2.js.map": "/top-gun-lab-project-frontend/static/js/main.582142c2.js.map",
+    "main.6166dad9.js.map": "/top-gun-lab-project-frontend/static/js/main.6166dad9.js.map",
     "787.6bf67714.chunk.js.map": "/top-gun-lab-project-frontend/static/js/787.6bf67714.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1549d2c5.css",
-    "static/js/main.582142c2.js"
+    "static/js/main.6166dad9.js"
   ]
 }
