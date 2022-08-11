@@ -1,5 +1,5 @@
-import React from "react";
-import { Layout, Button, Typography, Card, Form, Input, notification } from "antd";
+import React, { useState } from "react";
+import { Layout, Button, Typography, Card, Form, Input, notification, Spin } from "antd";
 
 import { Link, useNavigate } from "react-router-dom";
 import { register } from '../api/user';
@@ -9,10 +9,13 @@ const { Header, Footer, Content } = Layout;
 
 function Register() {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
-    const onFinish = (data) => {
+    const onFinish = async (data) => {
         try {
-            const response = register(data);
+            setLoading(true);
+            const response = await register(data);
+            setLoading(false);
             if (response.success) {
                 document.cookie = `user=${response.data.user.email}`;
                 document.cookie = `jwt=${response.data.token}`
@@ -55,60 +58,62 @@ function Register() {
                         title={<h5>Basic information</h5>}
                         bordered="false"
                     >
-                        <Form
-                            name="basic"
-                            onFinish={onFinish}
-                            className="row-col"
-                        >
-                            <Form.Item
-                                name="email"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please input your email!',
-                                    },
-                                ]}>
-                                <Input placeholder="Email" type='email' />
-                            </Form.Item>
-                            <Form.Item
-                                name="password"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please input your password!',
-                                    },
-                                ]}
+                        <Spin spinning={loading}>
+                            <Form
+                                name="basic"
+                                onFinish={onFinish}
+                                className="row-col"
                             >
-                                <Input.Password placeholder="Password" />
-                            </Form.Item>
-                            <Form.Item
-                                name="repeat_password"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please input your password!'
-                                    }
-                                ]}
-                            >
-                                <Input.Password placeholder="Confirm password" />
-                            </Form.Item>
-
-                            <Form.Item>
-                                <Button
-                                    style={{ width: "100%" }}
-                                    type="primary"
-                                    htmlType="submit"
+                                <Form.Item
+                                    name="email"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your email!',
+                                        },
+                                    ]}>
+                                    <Input placeholder="Email" type='email' />
+                                </Form.Item>
+                                <Form.Item
+                                    name="password"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your password!',
+                                        },
+                                    ]}
                                 >
-                                    SIGN UP
-                                </Button>
-                            </Form.Item>
-                        </Form>
-                        <p className="font-semibold text-muted text-center">
-                            Already have an account?{" "}
-                            <Link to="/login" className="font-bold text-dark">
-                                Sign in
-                            </Link>
-                        </p>
+                                    <Input.Password placeholder="Password" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="repeat_password"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your password!'
+                                        }
+                                    ]}
+                                >
+                                    <Input.Password placeholder="Confirm password" />
+                                </Form.Item>
+
+                                <Form.Item>
+                                    <Button
+                                        style={{ width: "100%" }}
+                                        type="primary"
+                                        htmlType="submit"
+                                    >
+                                        SIGN UP
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+                            <p className="font-semibold text-muted text-center">
+                                Already have an account?{" "}
+                                <Link to="/login" className="font-bold text-dark">
+                                    Sign in
+                                </Link>
+                            </p>
+                        </Spin>
                     </Card>
                 </Content>
                 <Footer>
