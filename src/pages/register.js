@@ -15,15 +15,17 @@ function Register() {
         try {
             setLoading(true);
             const response = await register(data);
-            setLoading(false);
             if (response.success) {
                 document.cookie = `user=${response.data.user.email}`;
                 document.cookie = `jwt=${response.data.token}`
                 navigate(`/dashboard/jobs`);
+            } else {
+                throw new Error(response.message);
             }
         } catch (error) {
-            openNotification('top', 'Register error. Please, try again later')
+            openNotification('top', error.message || 'Register error. Please, try again later')
         }
+        setLoading(false);
     };
 
     const openNotification = (placement, body) => {

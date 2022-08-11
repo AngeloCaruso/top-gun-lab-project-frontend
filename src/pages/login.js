@@ -15,7 +15,6 @@ function Login() {
         try {
             setLoading(true);
             const response = await login(data)
-            setLoading(false);
             if (response.success) {
                 document.cookie = `user=${response.data.user.email}`;
                 document.cookie = `jwt=${response.data.token}`;
@@ -26,6 +25,7 @@ function Login() {
         } catch (error) {
             openNotification('top', error.message || 'Login error. Please, try again later');
         }
+        setLoading(false);
     };
 
     const openNotification = (placement, body) => {
